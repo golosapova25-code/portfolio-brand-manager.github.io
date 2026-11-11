@@ -97,7 +97,7 @@ export function LogoSection() {
     { bg: "bg-zenith", logo: "bg-sky", name: "ночной", note: "небо на зените" },
   ];
   return (
-    <section id="logo" className="bg-cloud">
+    <section id="logo" className="relative bg-cloud">
       <Ruffle className="ruffle-milk" />
       <div className={cn(wrap, "py-20 md:py-28")}>
         <SectionHead
@@ -164,6 +164,7 @@ export function LogoSection() {
           </Reveal>
         </div>
       </div>
+      <Ruffle className="ruffle-cloud -mb-px translate-y-full" />
     </section>
   );
 }
@@ -272,7 +273,7 @@ export function Typography() {
     { tag: "пометка", cls: "type-hand", sample: "это я!", spec: "Caveat · только акценты" },
   ];
   return (
-    <section id="type" className="bg-butter">
+    <section id="type" className="relative bg-butter">
       <Ruffle className="ruffle-milk" />
       <div className={cn(wrap, "py-20 md:py-28")}>
         <SectionHead
