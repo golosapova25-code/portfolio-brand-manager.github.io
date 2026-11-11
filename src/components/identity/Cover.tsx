@@ -81,14 +81,14 @@ export function Cover() {
               alt="Бабочка рюши — маскот бренда"
               width={1200}
               height={1068}
-              className="animate-bob w-full drop-shadow-[0_24px_30px_oklch(0.42_0.115_256/0.25)]"
+              className="animate-bob w-full drop-float"
             />
           </div>
         </div>
 
         <div className="mt-10 grid items-end gap-6 md:grid-cols-12">
           <div className="md:col-span-7">
-            <Logo className="w-full max-w-3xl bg-cloud drop-shadow-[0_6px_0_oklch(0.42_0.115_256/0.18)]" />
+            <Logo className="w-full max-w-3xl bg-cloud drop-press" />
           </div>
           <p className="type-body text-ink md:col-span-5 md:pb-3">
             <span className="type-hand mr-1 text-shoe">*</span>

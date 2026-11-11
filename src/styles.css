@@ -305,3 +305,10 @@
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+@utility drop-float {
+  filter: drop-shadow(0 24px 30px color-mix(in oklab, var(--zenith) 25%, transparent));
+}
+@utility drop-press {
+  filter: drop-shadow(0 6px 0 color-mix(in oklab, var(--zenith) 18%, transparent));
+}
