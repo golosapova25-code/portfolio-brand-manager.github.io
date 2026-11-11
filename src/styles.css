@@ -1,9 +1,6 @@
 /*
  * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
- * - Keep every @import in this top block, above @theme and the rest of the file. Install an
- *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
- *   build resolves @import from the filesystem. Load those with a <link> in the head() of
- *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
+ * Keep every @import in this top block. Web fonts load via <link> in src/routes/__root.tsx.
  */
 @import "tailwindcss" source(none);
 @source "../src";
@@ -12,24 +9,17 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The design lives in this file: oklch color tokens on the shadcn variables
- * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
- * new tokens as needed, font tokens, and custom styles and animations.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * рюша × Алёна Галанова — design system v0.1
+ * Palette: небо (main), рюшка, масло, молоко, облако + accents зенит, туфелька, чернила.
  */
 
 @theme inline {
+  --font-display: "Unbounded", ui-sans-serif, system-ui, sans-serif;
+  --font-display-alt: "Yeseva One", Georgia, serif;
+  --font-mono: "MatrianMono", "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "MatrianMono", "IBM Plex Mono", ui-monospace, monospace;
+  --font-hand: "Caveat", cursive;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -37,6 +27,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -57,6 +48,19 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
+
+  /* brand palette */
+  --color-sky: var(--sky);
+  --color-sky-soft: var(--sky-soft);
+  --color-zenith: var(--zenith);
+  --color-ruffle: var(--ruffle);
+  --color-butter: var(--butter);
+  --color-milk: var(--milk);
+  --color-cloud: var(--cloud);
+  --color-shoe: var(--shoe);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -70,86 +74,241 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  --shadow-soft: var(--shadow-soft-v);
+  --shadow-float: var(--shadow-float-v);
+  --animate-bob: bob 5s ease-in-out infinite;
+  --animate-drift: drift 9s ease-in-out infinite;
+  --animate-flutter: flutter 0.9s ease-in-out infinite;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
+  --radius: 1.25rem;
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* brand */
+  --sky: oklch(0.875 0.062 240);        /* #B5DCFB — основной */
+  --sky-soft: oklch(0.94 0.03 235);
+  --zenith: oklch(0.42 0.115 256);      /* глубокое небо с фото */
+  --ruffle: oklch(0.82 0.095 357);      /* #FFA7C0 — платье */
+  --butter: oklch(0.955 0.075 105);     /* #F5F3B8 — оборка */
+  --milk: oklch(0.977 0.013 85);        /* молочный */
+  --cloud: oklch(1 0 0);                /* белый */
+  --shoe: oklch(0.5 0.2 28);            /* красные туфельки — микродоза */
+  --ink: oklch(0.24 0.012 265);
+  --ink-soft: oklch(0.46 0.012 265);
+
+  --background: var(--milk);
+  --foreground: var(--ink);
+  --card: var(--cloud);
+  --card-foreground: var(--ink);
+  --popover: var(--cloud);
+  --popover-foreground: var(--ink);
+  --primary: var(--sky);
+  --primary-foreground: var(--ink);
+  --secondary: var(--ruffle);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.955 0.012 85);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--butter);
+  --accent-foreground: var(--ink);
+  --destructive: var(--shoe);
+  --destructive-foreground: var(--cloud);
+  --border: oklch(0.24 0.012 265 / 14%);
+  --input: oklch(0.24 0.012 265 / 18%);
+  --ring: var(--zenith);
+
+  --chart-1: var(--sky);
+  --chart-2: var(--ruffle);
+  --chart-3: var(--butter);
+  --chart-4: var(--zenith);
+  --chart-5: var(--shoe);
+  --sidebar: var(--milk);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--sky);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: var(--butter);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--zenith);
+
+  --gradient-sky: linear-gradient(180deg, var(--sky) 0%, var(--sky-soft) 62%, var(--milk) 100%);
+  --gradient-dawn: linear-gradient(135deg, var(--sky) 0%, var(--ruffle) 55%, var(--butter) 100%);
+  --shadow-soft-v: 0 18px 40px -22px oklch(0.42 0.115 256 / 35%);
+  --shadow-float-v: 0 30px 60px -30px oklch(0.42 0.115 256 / 45%);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
   }
-
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-mono);
+    -webkit-font-smoothing: antialiased;
   }
+  ::selection {
+    background: var(--ruffle);
+    color: var(--ink);
+  }
+}
+
+/* ——— typography scale ——— */
+@utility type-hero {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+@utility type-h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 5vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+@utility type-h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  line-height: 1.15;
+}
+@utility type-body {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+@utility type-caption {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+@utility type-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+@utility type-hand {
+  font-family: var(--font-hand);
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* ——— backgrounds ——— */
+@utility bg-sky-gradient {
+  background-image: var(--gradient-sky);
+}
+@utility bg-dawn-gradient {
+  background-image: var(--gradient-dawn);
+}
+
+/* ——— рюшка: scalloped hem, the signature edge ——— */
+@utility ruffle-edge {
+  --ruffle-size: 28px;
+  height: calc(var(--ruffle-size) / 2);
+  background-image: radial-gradient(
+    circle at 50% 0,
+    var(--ruffle-color, var(--sky)) calc(var(--ruffle-size) / 2 - 0.5px),
+    transparent calc(var(--ruffle-size) / 2)
+  );
+  background-size: var(--ruffle-size) calc(var(--ruffle-size) / 2);
+  background-repeat: repeat-x;
+}
+@utility ruffle-sky { --ruffle-color: var(--sky); }
+@utility ruffle-soft { --ruffle-color: var(--sky-soft); }
+@utility ruffle-pink { --ruffle-color: var(--ruffle); }
+@utility ruffle-butter { --ruffle-color: var(--butter); }
+@utility ruffle-milk { --ruffle-color: var(--milk); }
+@utility ruffle-cloud { --ruffle-color: var(--cloud); }
+@utility ruffle-zenith { --ruffle-color: var(--zenith); }
+@utility ruffle-lg { --ruffle-size: 44px; }
+
+/* scalloped border around a card/sticker */
+@utility scallop-frame {
+  --s: 14px;
+  mask:
+    radial-gradient(var(--s) at 50% var(--s), #000 99%, #0000 101%) 50% calc(-1 * var(--s)) / calc(var(--s) * 2) 100% repeat-x,
+    radial-gradient(var(--s) at 50% calc(100% - var(--s)), #000 99%, #0000 101%) 50% calc(100% + var(--s)) / calc(var(--s) * 2) 100% repeat-x,
+    linear-gradient(#000 0 0) 0 var(--s) / 100% calc(100% - 2 * var(--s)) no-repeat;
+}
+
+/* recolourable logo / mark via mask (image url passed as --mask) */
+@utility brand-mask {
+  -webkit-mask: var(--mask) center / contain no-repeat;
+  mask: var(--mask) center / contain no-repeat;
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.6 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+/* ——— motion ——— */
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-14px) rotate(2deg); }
+}
+@keyframes drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(24px); }
+}
+@keyframes flutter {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.94); }
+}
+@keyframes fly-in-left {
+  from { transform: translate(-40vw, 8vh) rotate(-8deg); opacity: 0; }
+  to { transform: translate(0, 0) rotate(0); opacity: 1; }
+}
+@keyframes fly-in-right {
+  from { transform: translate(40vw, -6vh) rotate(10deg); opacity: 0; }
+  to { transform: translate(0, 0) rotate(0); opacity: 1; }
+}
+@utility animate-fly-left {
+  animation: fly-in-left 2.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-fly-right {
+  animation: fly-in-right 2.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+@utility drop-float {
+  filter: drop-shadow(0 24px 30px color-mix(in oklab, var(--zenith) 25%, transparent));
+}
+@utility drop-press {
+  filter: drop-shadow(0 6px 0 color-mix(in oklab, var(--zenith) 18%, transparent));
 }
