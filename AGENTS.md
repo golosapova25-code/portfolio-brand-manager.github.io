@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Brand visuals live as tokens/utilities in `src/styles.css` (palette, type-* scale, ruffle-edge, brand-mask); components use only those — keeps the identity editable in one place.
+- Logo and butterfly mark are single-colour PNG masks recoloured via `brand-mask` + a bg-* token, so new colourways need no new files.
+- Identity page sections live in `src/components/identity/`; brand images are CDN asset pointers in `src/assets/*.asset.json`.
