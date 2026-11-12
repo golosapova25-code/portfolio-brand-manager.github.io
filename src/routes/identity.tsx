@@ -15,7 +15,8 @@ import { Footer, Interface } from "@/components/identity/Interface";
 export const Route = createFileRoute("/identity")({
   head: () => ({
     meta: [
-      { title: "рюша × Алёна Галанова — айдентика" },
+      { title: "рюша × Алёна Галанова — айдентика (черновик)" },
+      { name: "robots", content: "noindex" },
       {
         name: "description",
         content:
