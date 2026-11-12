@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { brandAssets } from "@/components/identity/assets";
 import { Reveal, Ruffle, Sticker } from "@/components/identity/primitives";
 import { media, type MediaKey } from "@/content/media";
@@ -117,7 +118,7 @@ function MarqueeRow({ items, reverse, duration }: { items: MediaKey[]; reverse?:
     <div className="marquee marquee-fade overflow-hidden">
       <div
         className={cn("marquee-track gap-4 py-2", reverse && "marquee-reverse")}
-        style={{ "--marquee-duration": `${duration}s` } as React.CSSProperties}
+        style={{ "--marquee-duration": `${duration}s` } as CSSProperties}
       >
         {loop.map((s, i) => (
           <div key={`${s}-${i}`} className="w-36 shrink-0 md:w-48" aria-hidden={i >= items.length}>
@@ -172,7 +173,7 @@ export function Partners() {
         />
       </div>
       <div className="marquee mt-12 overflow-hidden border-y border-ink/15 bg-butter py-6">
-        <div className="marquee-track items-center" style={{ "--marquee-duration": "40s" } as React.CSSProperties}>
+        <div className="marquee-track items-center" style={{ "--marquee-duration": "40s" } as CSSProperties}>
           {loop.map((p, i) => (
             <span key={`${p}-${i}`} className="flex shrink-0 items-center" aria-hidden={i >= partners.length}>
               <span className="type-h2 whitespace-nowrap px-6 text-ink md:px-10">{p}</span>
@@ -188,6 +189,7 @@ export function Partners() {
 function CaseBlock({ c, index }: { c: Case; index: number }) {
   const tone = { sky: "bg-sky", ruffle: "bg-ruffle", butter: "bg-butter" }[c.tone];
   const flip = index % 2 === 1;
+  const wide = c.id === "decor";
   return (
     <article id={c.id} className="scroll-mt-20 py-12 md:py-16">
       <div className="grid gap-8 md:grid-cols-12">
@@ -207,19 +209,21 @@ function CaseBlock({ c, index }: { c: Case; index: number }) {
             {c.note && <p className="type-caption mt-6 text-ink/75">*{c.note}</p>}
           </div>
         </Reveal>
-        <div className={cn("grid grid-cols-2 gap-3 md:col-span-8 md:grid-cols-3 md:gap-4", flip && "md:order-1")}>
+        <div
+          className={cn(
+            "grid grid-cols-2 gap-3 md:col-span-8 md:gap-4",
+            wide ? "md:grid-cols-2" : "md:grid-cols-3",
+            flip && "md:order-1",
+          )}
+        >
           {c.images.map((img, i) => (
-            <Reveal
-              key={img}
-              delay={i * 110}
-              className={cn(i === 0 && "col-span-2 md:col-span-1", c.id === "decor" && i === 0 && "md:col-span-2")}
-            >
+            <Reveal key={img} delay={i * 110} className={cn(i === 0 && "col-span-2", i === 0 && !wide && "md:col-span-1")}>
               <ZoomImage
                 src={media[img]}
                 alt={`${c.title} — фото ${i + 1}`}
                 className={cn(
                   "w-full rounded-[1.5rem] bg-cloud",
-                  c.id === "decor" && i === 0 ? "aspect-[16/10] md:aspect-auto md:h-full" : "aspect-[9/14]",
+                  wide && i === 0 ? "aspect-[16/9]" : i === 0 ? "aspect-[4/5] md:aspect-[9/14]" : wide ? "aspect-[4/5]" : "aspect-[9/14]",
                 )}
                 imgClassName={img === "decor-couvert" || img === "homa-object" ? "object-contain" : undefined}
               />
