@@ -63,9 +63,9 @@ export function NomnomCase() {
         </div>
 
         {/* numbers */}
-        <div className="mt-6 grid gap-4 sm:grid-cols-3 md:gap-6">
+        <div className="mt-6 grid gap-4 md:grid-cols-3 md:gap-6">
           {nomnom.numbers.map((n, i) => (
-            <Reveal key={n.value} delay={i * 140} className="min-w-0 rounded-[2rem] bg-zenith p-6 text-milk md:p-8">
+            <Reveal key={n.value} delay={i * 140} className="min-w-0 rounded-[2rem] bg-zenith p-6 text-milk lg:p-8">
               <p className="type-number whitespace-nowrap">
                 {n.value}
               </p>

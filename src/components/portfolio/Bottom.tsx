@@ -136,7 +136,7 @@ export function Concepts() {
                       alt={`${ex.title} — фото ${i + 1}`}
                       className={cn(
                         "w-full rounded-[1.5rem] bg-cloud",
-                        ex.images.length > 1 ? (i === 0 ? "aspect-[4/5] md:aspect-[9/14]" : "aspect-[9/14]") : "aspect-[4/3] md:h-full md:aspect-auto",
+                        ex.images.length > 1 ? (i === 0 ? "aspect-[4/5] md:aspect-[9/14]" : "aspect-[9/14]") : "aspect-[4/3]",
                       )}
                       imgClassName={img === "homa-object" || img === "dj-pillow" ? "object-contain" : undefined}
                     />
