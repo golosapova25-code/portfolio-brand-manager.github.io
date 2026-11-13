@@ -63,10 +63,10 @@ export function NomnomCase() {
         </div>
 
         {/* numbers */}
-        <div className="mt-6 grid gap-6 md:grid-cols-3">
+        <div className="mt-6 grid gap-4 sm:grid-cols-3 md:gap-6">
           {nomnom.numbers.map((n, i) => (
-            <Reveal key={n.value} delay={i * 140} className="rounded-[2rem] bg-zenith p-8 text-milk">
-              <p className="font-display text-6xl font-extrabold leading-none tracking-tight md:text-7xl">
+            <Reveal key={n.value} delay={i * 140} className="min-w-0 rounded-[2rem] bg-zenith p-6 text-milk md:p-8">
+              <p className="type-number whitespace-nowrap">
                 {n.value}
               </p>
               <p className="type-caption mt-4 opacity-85">{n.label}</p>
@@ -164,23 +164,33 @@ export function StoriesMarquee() {
 export function Partners() {
   const loop = [...partners, ...partners];
   return (
-    <section id="partners" className="scroll-mt-16 overflow-hidden pb-16 pt-28">
-      <div className={wrap}>
+    <section id="partners" className={cn(wrap, "scroll-mt-16 pb-16 pt-28")}>
+      <div className="grid items-center gap-10 md:grid-cols-12">
         <SectionTitle
+          className="md:col-span-5"
           kicker="с кем мы уже работали"
           title="партнёры и бизнесы"
           lead="кофейни, салоны, магазины, бары и блогеры — список растёт с каждой коллаборацией."
         />
-      </div>
-      <div className="marquee mt-12 overflow-hidden border-y border-ink/15 bg-butter py-6">
-        <div className="marquee-track items-center" style={{ "--marquee-duration": "40s" } as CSSProperties}>
-          {loop.map((p, i) => (
-            <span key={`${p}-${i}`} className="flex shrink-0 items-center" aria-hidden={i >= partners.length}>
-              <span className="type-h2 whitespace-nowrap px-6 text-ink md:px-10">{p}</span>
-              <span className="font-display text-4xl text-shoe">*</span>
-            </span>
-          ))}
-        </div>
+        <Reveal className="md:col-span-7">
+          <div className="marquee fade-y h-80 overflow-hidden rounded-[2rem] bg-butter px-6 md:h-96 md:px-10">
+            <ul className="scroll-column" style={{ "--scroll-duration": "32s" } as CSSProperties}>
+              {loop.map((p, i) => (
+                <li
+                  key={`${p}-${i}`}
+                  aria-hidden={i >= partners.length}
+                  className="flex items-center gap-4 border-b border-ink/10 py-5"
+                >
+                  <span className="type-label w-6 text-ink-soft">
+                    {String((i % partners.length) + 1).padStart(2, "0")}
+                  </span>
+                  <span className="type-h3 text-ink">{p}</span>
+                  <span className="ml-auto font-display text-xl text-shoe">*</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -240,7 +250,7 @@ export function MoreCases() {
     <section id="cases" className={cn(wrap, "py-12 md:py-16")}>
       <SectionTitle
         kicker="ещё проекты"
-        title="коллаборации, декор и подарки"
+        title="коллаборации и декор"
         lead="каждый проект — отдельный продукт, придуманный под задачу партнёра: от упаковки для блогерской рассылки до оформления целой кофейни."
       />
       <div className="mt-6 divide-y divide-ink/10">
