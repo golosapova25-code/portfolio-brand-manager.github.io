@@ -12,4 +12,4 @@
 - [x] Remove Кофе.Бриошь case
 - [x] Concepts: first рюша × хомашенька (2 m carabiner, colours/details for her brand SILLY, no "gift"); add busy-board pillow for DJ MOJNOPOTISHE
 - [x] Eggsellent: slides auto-scroll sideways smoothly; benefits under footnote «чем именно такой формат может быть полезен»
-- [x] Waiting on Alena: MatrianMono font files, NOMNOM reels/videos
+- [ ] Waiting on Alena: MatrianMono font files, NOMNOM reels/videos
