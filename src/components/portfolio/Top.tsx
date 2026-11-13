@@ -76,10 +76,10 @@ export function Hero() {
         height={1088}
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className={cn(wrap, "relative flex min-h-[100svh] flex-col pb-20 pt-24 md:pt-28")}>
+      <div className={cn(wrap, "relative flex min-h-[100svh] flex-col pb-16 pt-24 md:pb-20 md:pt-28")}>
         {/* the meeting */}
-        <div className="relative flex flex-1 items-center justify-center py-6">
-          <figure className="animate-fly-left relative z-10 w-[44%] max-w-[300px] -rotate-6 md:w-[24%]">
+        <div className="relative flex flex-1 items-center justify-center py-4 md:py-6">
+          <figure className="animate-fly-left relative z-10 w-[40%] max-w-[260px] -rotate-6 md:w-[20%]">
             <img
               src={brandAssets.alena}
               alt="Алёна Галанова в жёлтом платье на фоне неба"
@@ -88,7 +88,7 @@ export function Hero() {
               className="aspect-[3/4] w-full rounded-[1.5rem] object-cover object-top shadow-float"
             />
           </figure>
-          <div className="animate-fly-right relative z-20 -ml-4 w-[52%] max-w-[400px] md:ml-6 md:w-[30%]">
+          <div className="animate-fly-right relative z-20 -ml-4 w-[48%] max-w-[340px] md:ml-6 md:w-[26%]">
             <img
               src={brandAssets.mascot}
               alt="Бабочка рюши"
@@ -99,25 +99,27 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="grid items-end gap-8 md:grid-cols-12">
-          <Reveal delay={1600} className="md:col-span-7">
-            <h1 className="type-hero text-ink">
+        <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
+          <Reveal delay={1600} className="md:col-span-6">
+            <h1 className="type-intro text-ink">
               {hello1}
               <br />
               <span className="text-zenith">{hello2}</span>
             </h1>
           </Reveal>
-          <Reveal delay={1900} className="md:col-span-5">
-            <p className="type-body text-ink">{intro.text}</p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild variant="ink" size="pill">
-                <a href="#nomnom">
-                  смотреть кейсы <ArrowDown />
-                </a>
-              </Button>
-              <Button asChild variant="line" size="pill" className="bg-cloud/60">
-                <a href="#contacts">написать мне</a>
-              </Button>
+          <Reveal delay={1900} className="md:col-span-6">
+            <div className="rounded-[1.5rem] bg-cloud/75 p-5 backdrop-blur-md md:p-6">
+              <p className="type-body text-ink">{intro.text}</p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Button asChild variant="ink" size="pill">
+                  <a href="#nomnom">
+                    смотреть кейсы <ArrowDown />
+                  </a>
+                </Button>
+                <Button asChild variant="line" size="pill">
+                  <a href="#contacts">написать мне</a>
+                </Button>
+              </div>
             </div>
           </Reveal>
         </div>

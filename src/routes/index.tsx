@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Brand, Header, Hero } from "@/components/portfolio/Top";
 import { MoreCases, NomnomCase, Partners, StoriesMarquee } from "@/components/portfolio/Cases";
-import { Concepts, Final, Workshops } from "@/components/portfolio/Bottom";
+import { Concepts, Final, Product, Workshops } from "@/components/portfolio/Bottom";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Портфолио бренд-менеджера Алёны Галановой: текстильный бренд «рюша», коллаборация с НОМНОМ (sold out за 2 дня, +250% выручки), мастер-классы и концепции.",
+          "Портфолио бренд-менеджера Алёны Галановой: текстильный бренд «рюша», коллаборация с НОМНОМ (sold out за 2 дня, +250% выручки), разработка продуктов, мастер-классы и эксперименты.",
       },
       { property: "og:title", content: "Алёна Галанова — бренд-менеджер" },
       {
@@ -34,6 +34,7 @@ function Index() {
       <StoriesMarquee />
       <Partners />
       <MoreCases />
+      <Product />
       <Workshops />
       <Concepts />
       <Final />

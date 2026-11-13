@@ -1,18 +1,18 @@
-// Auto-assembled list of case media (CDN pointers). Key = file name without extension.
+// Case media (CDN pointers). Key = file name without extension.
 import benedict_bag from "@/assets/cases/benedict-bag.webp.asset.json";
 import benedict_cover from "@/assets/cases/benedict-cover.webp.asset.json";
 import benedict_mk from "@/assets/cases/benedict-mk.webp.asset.json";
 import benedict_parts from "@/assets/cases/benedict-parts.webp.asset.json";
 import benedict_recipe from "@/assets/cases/benedict-recipe.webp.asset.json";
-import brioche_bags from "@/assets/cases/brioche-bags.webp.asset.json";
-import brioche_bun from "@/assets/cases/brioche-bun.webp.asset.json";
-import brioche_poster from "@/assets/cases/brioche-poster.webp.asset.json";
 import clair_1 from "@/assets/cases/clair-1.webp.asset.json";
 import clair_2 from "@/assets/cases/clair-2.webp.asset.json";
 import clair_3 from "@/assets/cases/clair-3.webp.asset.json";
 import decor_couvert from "@/assets/cases/decor-couvert.webp.asset.json";
 import decor_hall from "@/assets/cases/decor-hall.webp.asset.json";
+import decor_mascot_1 from "@/assets/cases/decor-mascot-1.webp.asset.json";
+import decor_mascot_2 from "@/assets/cases/decor-mascot-2.webp.asset.json";
 import decor_table from "@/assets/cases/decor-table.webp.asset.json";
+import dj_pillow from "@/assets/cases/dj-pillow.webp.asset.json";
 import homa_hand from "@/assets/cases/homa-hand.webp.asset.json";
 import homa_object from "@/assets/cases/homa-object.webp.asset.json";
 import homa_room from "@/assets/cases/homa-room.webp.asset.json";
@@ -50,6 +50,8 @@ import story_b6 from "@/assets/cases/story-b6.webp.asset.json";
 import story_b7 from "@/assets/cases/story-b7.webp.asset.json";
 import story_b8 from "@/assets/cases/story-b8.webp.asset.json";
 import story_b9 from "@/assets/cases/story-b9.webp.asset.json";
+import wings_case_1 from "@/assets/cases/wings-case-1.webp.asset.json";
+import wings_case_2 from "@/assets/cases/wings-case-2.webp.asset.json";
 
 export const media = {
   "benedict-bag": benedict_bag.url,
@@ -57,15 +59,15 @@ export const media = {
   "benedict-mk": benedict_mk.url,
   "benedict-parts": benedict_parts.url,
   "benedict-recipe": benedict_recipe.url,
-  "brioche-bags": brioche_bags.url,
-  "brioche-bun": brioche_bun.url,
-  "brioche-poster": brioche_poster.url,
   "clair-1": clair_1.url,
   "clair-2": clair_2.url,
   "clair-3": clair_3.url,
   "decor-couvert": decor_couvert.url,
   "decor-hall": decor_hall.url,
+  "decor-mascot-1": decor_mascot_1.url,
+  "decor-mascot-2": decor_mascot_2.url,
   "decor-table": decor_table.url,
+  "dj-pillow": dj_pillow.url,
   "homa-hand": homa_hand.url,
   "homa-object": homa_object.url,
   "homa-room": homa_room.url,
@@ -103,6 +105,8 @@ export const media = {
   "story-b7": story_b7.url,
   "story-b8": story_b8.url,
   "story-b9": story_b9.url,
+  "wings-case-1": wings_case_1.url,
+  "wings-case-2": wings_case_2.url,
 } as const;
 
 export type MediaKey = keyof typeof media;
