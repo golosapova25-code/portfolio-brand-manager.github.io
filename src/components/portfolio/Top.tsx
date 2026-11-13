@@ -99,15 +99,15 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="grid items-end gap-6 md:grid-cols-12 md:gap-10">
-          <Reveal delay={1600} className="md:col-span-6">
+        <div className="flex flex-col gap-6">
+          <Reveal delay={1600}>
             <h1 className="type-intro text-ink">
               {hello1}
               <br />
               <span className="text-zenith">{hello2}</span>
             </h1>
           </Reveal>
-          <Reveal delay={1900} className="md:col-span-6">
+          <Reveal delay={2000} className="max-w-xl">
             <div className="rounded-[1.5rem] bg-cloud/75 p-5 backdrop-blur-md md:p-6">
               <p className="type-body text-ink">{intro.text}</p>
               <div className="mt-5 flex flex-wrap gap-3">
