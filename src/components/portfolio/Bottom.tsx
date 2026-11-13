@@ -1,8 +1,9 @@
+import type { CSSProperties } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { brandAssets } from "@/components/identity/assets";
 import { Logo, Reveal, Ruffle, Sticker } from "@/components/identity/primitives";
 import { media } from "@/content/media";
-import { benedict, brioche, contacts, workshops } from "@/content/portfolio";
+import { benedict, contacts, experiments, product, workshops } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
 import { Kicker, SectionTitle, ZoomImage, wrap } from "./ui";
 
@@ -38,7 +39,53 @@ export function Workshops() {
   );
 }
 
+export function Product() {
+  return (
+    <section id="product" className={cn(wrap, "scroll-mt-16 py-20 md:py-28")}>
+      <SectionTitle kicker="разработка продукта" title={product.title} lead={product.lead} />
+      <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+        {product.steps.map((st, i) => (
+          <Reveal key={st.n} delay={i * 100} className="rounded-[1.5rem] border bg-cloud p-5 md:p-6">
+            <p className="type-label text-zenith">{st.n}</p>
+            <p className="type-h3 mt-6 text-ink">{st.t}</p>
+            <p className="type-caption mt-2 text-ink-soft">{st.d}</p>
+          </Reveal>
+        ))}
+      </div>
+
+      <div className="mt-10 grid gap-6 md:grid-cols-12">
+        <Reveal className="rounded-[2rem] bg-sky p-7 md:col-span-5 md:p-9">
+          <Sticker className="bg-butter">{product.case.label}</Sticker>
+          <h3 className="type-h2 mt-6 text-ink">{product.case.title}</h3>
+          <p className="type-body mt-5 text-ink">{product.case.lead}</p>
+          <ul className="mt-6 space-y-2">
+            {product.case.points.map((pt) => (
+              <li key={pt} className="type-body flex gap-2 text-ink">
+                <span className="text-shoe">*</span>
+                {pt}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+        <div className="grid grid-cols-2 gap-3 md:col-span-7 md:gap-4">
+          {product.case.images.map((img, i) => (
+            <Reveal key={img} delay={i * 120}>
+              <ZoomImage
+                src={media[img]}
+                alt={`${product.case.title} — фото ${i + 1}`}
+                className="aspect-[4/5] w-full rounded-[1.5rem] bg-cloud"
+                imgClassName="object-contain"
+              />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function Concepts() {
+  const loop = [...benedict.slides, ...benedict.slides];
   return (
     <section id="concepts" className="scroll-mt-16 py-24 md:py-32">
       <div className={wrap}>
@@ -59,35 +106,45 @@ export function Concepts() {
           </Reveal>
         </div>
 
-        {/* brioche */}
-        <div className="mt-16 grid gap-6 md:grid-cols-12">
-          <Reveal className="rounded-[2rem] bg-sky p-7 md:col-span-4 md:p-9">
-            <Sticker className="border-dashed bg-transparent">концепция / визуализация</Sticker>
-            <h3 className="type-h2 mt-6 text-ink">{brioche.title}</h3>
-            <p className="type-hand mt-3 text-zenith">{brioche.start}</p>
-            <p className="type-body mt-5 text-ink">{brioche.lead}</p>
-            <p className="type-label mt-6 text-ink/70">состав</p>
-            <ul className="mt-3 space-y-1.5">
-              {brioche.composition.map((c) => (
-                <li key={c} className="type-body flex gap-2 text-ink">
-                  <span className="text-shoe">*</span>
-                  {c}
-                </li>
-              ))}
-            </ul>
-            <p className="type-caption mt-6 text-ink/70">*{brioche.note}</p>
-          </Reveal>
-          <div className="grid grid-cols-2 gap-3 md:col-span-8 md:grid-cols-5 md:gap-4">
-            <Reveal className="md:col-span-2 md:row-span-2">
-              <ZoomImage src={media["brioche-poster"]} alt="афиша кофе.бриошь × рюша" className="aspect-[3/4] h-full w-full rounded-[1.5rem]" />
-            </Reveal>
-            <Reveal delay={100} className="md:col-span-3">
-              <ZoomImage src={media["brioche-bags"]} alt="визуализация сумочки-булочки" className="aspect-[16/14] w-full rounded-[1.5rem] bg-cloud" />
-            </Reveal>
-            <Reveal delay={200} className="col-span-2 md:col-span-3">
-              <ZoomImage src={media["brioche-bun"]} alt="фирменная булочка смородина-маскарпоне" className="aspect-[16/10] w-full rounded-[1.5rem] bg-cloud" imgClassName="object-contain" />
-            </Reveal>
-          </div>
+        {/* experiments */}
+        <div className="mt-14 space-y-6">
+          {experiments.map((ex, idx) => (
+            <div key={ex.id} id={ex.id} className="grid scroll-mt-20 gap-6 md:grid-cols-12">
+              <Reveal className={cn("rounded-[2rem] p-7 md:col-span-5 md:p-9", idx % 2 ? "bg-ruffle" : "bg-sky")}>
+                <Sticker className="bg-cloud">эксперимент</Sticker>
+                <h3 className="type-h2 mt-6 text-ink">{ex.title}</h3>
+                <p className="type-body mt-5 text-ink">{ex.lead}</p>
+                <ul className="mt-6 space-y-2">
+                  {ex.points.map((pt) => (
+                    <li key={pt} className="type-body flex gap-2 text-ink">
+                      <span className="text-shoe">*</span>
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+              <div
+                className={cn(
+                  "grid gap-3 md:col-span-7 md:gap-4",
+                  ex.images.length > 1 ? "grid-cols-2 md:grid-cols-3" : "grid-cols-1",
+                )}
+              >
+                {ex.images.map((img, i) => (
+                  <Reveal key={img} delay={i * 110} className={cn(ex.images.length > 1 && i === 0 && "col-span-2 md:col-span-1")}>
+                    <ZoomImage
+                      src={media[img]}
+                      alt={`${ex.title} — фото ${i + 1}`}
+                      className={cn(
+                        "w-full rounded-[1.5rem] bg-cloud",
+                        ex.images.length > 1 ? (i === 0 ? "aspect-[4/5] md:aspect-[9/14]" : "aspect-[9/14]") : "aspect-[4/3] md:h-full md:aspect-auto",
+                      )}
+                      imgClassName={img === "homa-object" || img === "dj-pillow" ? "object-contain" : undefined}
+                    />
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* benedict */}
@@ -98,21 +155,34 @@ export function Concepts() {
               <h3 className="type-h2 mt-6 text-ink">{benedict.title}</h3>
               <p className="type-hand mt-2 text-zenith">{benedict.subtitle}</p>
             </div>
-            <p className="type-body text-ink md:col-span-7 md:pt-14">{benedict.lead}</p>
+            <div className="md:col-span-7 md:pt-14">
+              <p className="type-body text-ink">{benedict.lead}</p>
+              <div className="mt-5 rounded-[1.25rem] border border-dashed border-ink/30 p-5">
+                <p className="type-caption text-ink-soft">*{benedict.benefitsTitle}:</p>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {benedict.benefits.map((b) => (
+                    <li key={b} className="type-caption rounded-full bg-butter px-3 py-1.5 text-ink">
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </Reveal>
         </div>
       </div>
-      <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 md:px-10 [scrollbar-width:thin]">
-        {benedict.slides.map((s, i) => (
-          <Reveal key={s.image} delay={i * 90} className="w-[82vw] max-w-[620px] shrink-0 snap-start">
-            <ZoomImage src={media[s.image]} alt={s.caption} className="aspect-[1950/1080] w-full rounded-[1.5rem] border bg-cloud" />
-            <p className="type-caption mt-3 text-ink-soft">
-              <span className="text-zenith">0{i + 1}</span> · {s.caption}
-            </p>
-          </Reveal>
-        ))}
+      <div className="marquee marquee-fade mt-10 overflow-hidden">
+        <div className="marquee-track gap-4 px-2 py-2" style={{ "--marquee-duration": "70s" } as CSSProperties}>
+          {loop.map((sl, i) => (
+            <div key={`${sl.image}-${i}`} className="w-[78vw] max-w-[560px] shrink-0" aria-hidden={i >= benedict.slides.length}>
+              <ZoomImage src={media[sl.image]} alt={sl.caption} className="aspect-[1950/1080] w-full rounded-[1.5rem] border bg-cloud" />
+              <p className="type-caption mt-3 text-ink-soft">
+                <span className="text-zenith">0{(i % benedict.slides.length) + 1}</span> · {sl.caption}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-      <p className={cn(wrap, "type-caption text-ink-soft")}>листайте вбок →</p>
     </section>
   );
 }
