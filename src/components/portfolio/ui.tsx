@@ -12,8 +12,8 @@ export function ZoomImage({
 }: {
   src: string;
   alt: string;
-  className?: string;
-  imgClassName?: string;
+  className?: string | undefined;
+  imgClassName?: string | undefined;
 }) {
   return (
     <Dialog>
