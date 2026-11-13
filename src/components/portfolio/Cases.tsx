@@ -136,7 +136,7 @@ function MarqueeRow({ items, reverse, duration }: { items: MediaKey[]; reverse?:
 
 export function StoriesMarquee() {
   return (
-    <section className="relative overflow-hidden bg-sky pb-24">
+    <section className="relative bg-sky pb-24">
       <div className={cn(wrap, "flex items-end justify-between gap-6 pb-10")}>
         <SectionTitle
           kicker="коллаборация глазами покупателей"
