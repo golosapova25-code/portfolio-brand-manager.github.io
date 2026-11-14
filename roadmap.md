@@ -12,4 +12,9 @@
 - [x] Remove Кофе.Бриошь case
 - [x] Concepts: first рюша × хомашенька (2 m carabiner, colours/details for her brand SILLY, no "gift"); add busy-board pillow for DJ MOJNOPOTISHE
 - [x] Eggsellent: slides auto-scroll sideways smoothly; benefits under footnote «чем именно такой формат может быть полезен»
+## Edits (Nov 14) — touch nothing else
+- [x] Brand section: drop «слово бабочке» and «а теперь немного обо мне»
+- [x] Site copy in Alena's own voice (no brand "мы")
+- [x] Product lead: «разрабатываю продукты, которые продолжают визуальный мир бренда.»
+- [x] Workshops: new description as separate cards
 - [ ] Waiting on Alena: MatrianMono font files, NOMNOM reels/videos
