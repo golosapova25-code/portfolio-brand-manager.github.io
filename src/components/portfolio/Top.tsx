@@ -6,7 +6,7 @@ import { ButterflyMark, Logo, Reveal, Ruffle } from "@/components/identity/primi
 import { media } from "@/content/media";
 import { brandSpeech, directions, intro } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
-import { Kicker, wrap } from "./ui";
+import { wrap } from "./ui";
 
 const nav = [
   ["#brand", "рюша"],
@@ -145,11 +145,10 @@ export function Brand() {
           <Logo className="mx-auto mt-6 w-3/4" />
         </Reveal>
         <div className="md:col-span-7">
-          <Kicker>слово бабочке</Kicker>
-          <div className="relative mt-5 rounded-[2rem] rounded-tl-md bg-cloud p-7 shadow-soft md:p-10">
+          <div className="relative rounded-[2rem] rounded-tl-md bg-cloud p-7 shadow-soft md:p-10">
             {brandSpeech.map((line, i) => (
               <Reveal key={line} delay={i * 220}>
-                <p className={cn(i === 1 ? "type-h3 my-3 text-zenith" : "type-body mt-2 text-ink")}>
+                <p className={cn(i === 0 ? "type-h3 mb-3 text-zenith" : "type-body mt-2 text-ink")}>
                   {line}
                 </p>
               </Reveal>

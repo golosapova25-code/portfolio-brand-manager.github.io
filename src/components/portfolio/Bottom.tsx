@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { brandAssets } from "@/components/identity/assets";
 import { Logo, Reveal, Ruffle, Sticker } from "@/components/identity/primitives";
 import { media } from "@/content/media";
-import { benedict, contacts, experiments, product, workshops } from "@/content/portfolio";
+import { benedict, contacts, experiments, product, workshops, workshopsIntro, workshopsTasks } from "@/content/portfolio";
 import { cn } from "@/lib/utils";
 import { Kicker, SectionTitle, ZoomImage, wrap } from "./ui";
 
@@ -15,8 +15,18 @@ export function Workshops() {
         <SectionTitle
           kicker="мастер-классы и события"
           title={<>регулярные мастер-классы, собирающие sold out</>}
-          lead="идея, реализация, проведение. для каждого мастер-класса я разрабатываю отдельный продукт — его участники создают своими руками — и визуал: афишу, анонсы, упаковку."
         />
+        <Reveal className="mt-8">
+          <p className="type-body text-ink">{workshopsIntro}</p>
+          <ul className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+            {workshopsTasks.map((t, i) => (
+              <li key={t} className="rounded-[1.5rem] bg-cloud p-5 md:p-6">
+                <p className="type-label text-zenith">0{i + 1}</p>
+                <p className="type-body mt-4 text-ink">{t}</p>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {workshops.map((w, i) => (
             <Reveal key={w.title} delay={i * 130}>
@@ -93,11 +103,11 @@ export function Concepts() {
           <Reveal className="md:col-span-8">
             <Kicker>эксперименты и концепции</Kicker>
             <h2 className="type-h2 mt-4 text-ink">
-              мы можем сделать абсолютно <span className="text-zenith">любое</span> текстильное
+              я могу воплотить абсолютно <span className="text-zenith">любое</span> текстильное
               изделие
             </h2>
             <p className="type-body mt-5 max-w-2xl text-ink-soft">
-              от идеи и первого эскиза до готового продукта. мы любим сложные задачи, необычные формы
+              от идеи и первого эскиза до готового продукта. я люблю сложные задачи, необычные формы
               и проекты, которые выходят за пределы привычного представления о текстиле.
             </p>
           </Reveal>
