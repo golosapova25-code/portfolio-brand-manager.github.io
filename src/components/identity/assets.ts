@@ -1,13 +1,8 @@
-import mascot from "@/assets/mascot.webp.asset.json";
-import logo from "@/assets/logo.webp.asset.json";
-import butterfly from "@/assets/butterfly.webp.asset.json";
-import alena from "@/assets/alena.webp.asset.json";
-import sky from "@/assets/sky.jpg";
-
+// Brand images: real files in public/images, served as /images/<file>.
 export const brandAssets = {
-  mascot: mascot.url,
-  logo: logo.url,
-  butterfly: butterfly.url,
-  alena: alena.url,
-  sky,
+  mascot: "/images/mascot.webp",
+  logo: "/images/logo.webp",
+  butterfly: "/images/butterfly.webp",
+  alena: "/images/alena.webp",
+  sky: "/images/sky.jpg",
 };
